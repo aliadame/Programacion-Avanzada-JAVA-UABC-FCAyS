@@ -28,13 +28,73 @@ public class Operadores {
         }
         return resultado;
     }
+    
+    /**
+     * El siguiente es un metodo que resta valores
+     * utilizando argumentos variables
+     * @param argumentos, arreglo de datos a restar
+     * @return double indicando el resultado
+     */
+    public double restar(int inicio, double... argumentos) {
+        double resultado = argumentos[inicio];
+        for (double arg : argumentos) {
+            if(inicio != 0) {
+                if(arg > 0) {
+                    resultado = resultado - (arg);
+                } else {
+                    resultado = resultado + (arg);
+                }
+            } else {
+                inicio = 1;
+            }
+        }
+        return resultado;
+    }
+    
+    /**
+     * El siguiente es un metodo que multiplica valores
+     * utilizando argumentos variables
+     * @param args valores con tipo de dato double
+     * @return double con la multiplicacion
+     */
+    public double multiplicar(double... args) {
+        double resultado = args[0];
+        for (int i = 0; i < args.length; i++) {
+            resultado = resultado * Math.abs(args[i]);
+        }
+        return resultado;
+    }
+    
+    /**
+     * El siguiente es un metodo que divide valores
+     * utilizando argumentos variables
+     * @param args valores con tipo de dato double
+     * @return Double con la division o nulo si hay error
+     */
+    public Double dividir(double... args) {
+        double resultado = args[0];
+        for (int i = 0; i < args.length; i++) {
+            if(args[i] == 0) {
+                return null;
+            }
+            resultado = resultado / Math.abs(args[i]);
+        }
+        return resultado;
+    }
 
     /**
      * Metodo main, de ejecucion de la operaciones
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println(new Operadores().sumar(2,3,5));
+        // Probando el metodo sumar
+        System.out.println(new Operadores().sumar(-2,-3,5));
+        
+        // Probando el metodo restar
+        System.out.println(new Operadores().restar(0,-100,-100));
+        System.out.println(new Operadores().restar(0,100,100,-100,-200));
+        System.out.println(new Operadores().multiplicar(0,-2,-1,-3));
+        System.out.println(new Operadores().dividir(100,100));
     }
     
 }
